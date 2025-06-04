@@ -43,7 +43,7 @@ function ChatBot() {
       {/* Header */}
       <Box
         sx={{
-          bgcolor: "#1976d2",
+          bgcolor: "#1E4A8E",
           color: "white",
           px: 2,
           py: 1.5,
