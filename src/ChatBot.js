@@ -5,10 +5,7 @@ import {
   TextField,
   Button,
   Paper,
-  Stack,
-  AppBar,
-  Toolbar,
-  Container
+  Stack
 } from "@mui/material";
 
 function ChatBot() {
@@ -29,23 +26,42 @@ function ChatBot() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ height: "100vh", display: "flex", flexDirection: "column" }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6">Instant Buddy Chat</Typography>
-        </Toolbar>
-      </AppBar>
+    <Paper
+      elevation={10}
+      sx={{
+        width: 350,
+        height: 500,
+        borderRadius: 3,
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+        bgcolor: "white",
+        overflow: "hidden",
+        fontFamily: "Segoe UI, sans-serif"
+      }}
+    >
+      {/* Header */}
+      <Box
+        sx={{
+          bgcolor: "#1976d2",
+          color: "white",
+          px: 2,
+          py: 1.5,
+          fontWeight: 600,
+          fontSize: 16
+        }}
+      >
+        Instant Buddy Chat
+      </Box>
 
-      <Paper
-        elevation={3}
+      {/* Messages */}
+      <Box
         sx={{
           flex: 1,
           overflowY: "auto",
-          p: 2,
-          mt: 2,
-          mb: 1,
-          bgcolor: "#f9f9f9",
-          borderRadius: 2
+          px: 2,
+          py: 1,
+          background: "#f5f5f5"
         }}
       >
         <Stack spacing={1}>
@@ -59,29 +75,49 @@ function ChatBot() {
                 px: 2,
                 py: 1,
                 borderRadius: 2,
-                maxWidth: "70%"
+                maxWidth: "75%",
+                fontSize: 14
               }}
             >
               {msg.text}
             </Box>
           ))}
         </Stack>
-      </Paper>
+      </Box>
 
-      <Box sx={{ display: "flex", gap: 1 }}>
+      {/* Input */}
+      <Box
+        sx={{
+          display: "flex",
+          p: 1,
+          borderTop: "1px solid #ddd",
+          bgcolor: "#f9f9f9"
+        }}
+      >
         <TextField
           fullWidth
+          size="small"
           variant="outlined"
           placeholder="Type your message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          sx={{ bgcolor: "white" }}
         />
-        <Button variant="contained" onClick={sendMessage}>
-          Send
+        <Button
+          onClick={sendMessage}
+          variant="contained"
+          sx={{
+            ml: 1,
+            borderRadius: 2,
+            px: 3,
+            fontWeight: 600
+          }}
+        >
+          SEND
         </Button>
       </Box>
-    </Container>
+    </Paper>
   );
 }
 
